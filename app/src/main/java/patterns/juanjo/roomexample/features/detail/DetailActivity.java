@@ -22,6 +22,6 @@ public class DetailActivity extends BaseActivity {
       detailFragment = detailFragment.newInstance();
     }
 
-    addFragmentToActivity(fManager,detailFragment,R.id.createContainer,TAG_DETAIL_FRAGMENT);
+    addFragmentToActivity(fManager,detailFragment,R.id.create_container,TAG_DETAIL_FRAGMENT);
   }
 }

@@ -29,8 +29,11 @@ dependencies {
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  //Test
+  compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+  //Test
+  testCompile 'org.mockito:mockito-core:2.8.9'
+  testCompile 'junit:junit:4.12'
   //Circle Imageview
   compile "de.hdodenhof:circleimageview:$rootProject.circleImageViewVersion"
   //D2
@@ -54,7 +57,9 @@ dependencies {
   compile "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
   compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
   compile "com.github.JakeWharton:ViewPagerIndicator:$rootProject.viewPagerIndicatorVersion"
-  compile 'com.android.support.constraint:constraint-layout:1.0.2'
-  testCompile 'org.mockito:mockito-core:2.8.9'
-  testCompile 'junit:junit:4.12'
+
+  compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+  annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+
 }

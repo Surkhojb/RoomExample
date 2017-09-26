@@ -1,10 +1,10 @@
 package patterns.juanjo.roomexample.di;
 
-import android.support.v4.app.ListFragment;
 import dagger.Component;
 import javax.inject.Singleton;
 import patterns.juanjo.roomexample.features.create.CreateFragment;
 import patterns.juanjo.roomexample.features.detail.DetailFragment;
+import patterns.juanjo.roomexample.features.list.ListFragment;
 
 /**
  * Created by juanj on 25/09/2017.

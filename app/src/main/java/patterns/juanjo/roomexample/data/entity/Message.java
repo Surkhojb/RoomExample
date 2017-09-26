@@ -12,15 +12,22 @@ import java.util.UUID;
 public class Message {
   @PrimaryKey
   String id;
-  String timeOfDay;
+  String title;
   String message;
+  String timeOfDay;
+
   int color;
 
-  public Message(String timeOfDay, String message, int color) {
+  public Message(String title, String message, String timeOfDay,int color) {
     this.id = UUID.randomUUID().toString();
+    this.title = title;
     this.timeOfDay = timeOfDay;
     this.message = message;
     this.color = color;
+  }
+
+  public String getTitle() {
+    return title;
   }
 
   public String getTimeOfDay() {

@@ -20,7 +20,7 @@ public class ListActivity extends BaseActivity {
       listFragment = ListFragment.newInstance();
     }
 
-    addFragmentToActivity(fManager,listFragment,R.id.listContainer,TAG_LIST_FRAGMENT);
+    addFragmentToActivity(fManager,listFragment,R.id.list_container,TAG_LIST_FRAGMENT);
   }
 
 }

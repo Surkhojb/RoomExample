@@ -20,6 +20,6 @@ public class CreateActivity extends BaseActivity {
       createFragment = createFragment.newInstance();
     }
 
-    addFragmentToActivity(fManager,createFragment,R.id.createContainer,TAG_CREATE_FRAGMENT);
+    addFragmentToActivity(fManager,createFragment,R.id.create_container,TAG_CREATE_FRAGMENT);
   }
 }

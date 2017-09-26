@@ -5,7 +5,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.2'
+    classpath 'com.android.tools.build:gradle:2.3.3'
 
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
@@ -32,4 +32,5 @@ ext{
   roomLifecycleVersion = '1.0.0-alpha5'
   viewPagerIndicatorVersion = '2.4.1'
   daggerVersion = '2.11'
+  butterKnifeVersion = '8.8.1'
 }

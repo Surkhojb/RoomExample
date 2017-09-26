@@ -22,7 +22,7 @@ public class RoomApp extends Application {
         .build();
   }
 
-  ApplicationComponent getAppComponent(){
+  public ApplicationComponent getAppComponent(){
     return appComponent;
   }
 }
