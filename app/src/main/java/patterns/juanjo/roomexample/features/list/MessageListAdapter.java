@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -20,6 +21,7 @@ import patterns.juanjo.roomexample.data.entity.Message;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.MessageViewHolder> {
   List<Message> messages = new ArrayList<>();
+  RecyclerOnItemClickListener listener;
 
   public MessageListAdapter() {
   }
@@ -29,6 +31,9 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     notifyDataSetChanged();
   }
 
+  public void setOnItemClick(RecyclerOnItemClickListener l){
+    this.listener = l;
+  }
   @Override
   public MessageListAdapter.MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_list, parent, false);
@@ -46,17 +51,26 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     return messages.size();
   }
 
-  public class MessageViewHolder extends RecyclerView.ViewHolder{
+  public String getMessageId(int position) {
+    return messages.get(position).getMessageId();
+  }
+
+  public class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     @BindView(R.id.img_color)
     CircleImageView imgColor;
     @BindView(R.id.tv_message)
-    TextView tvMessage;
+   public TextView tvMessage;
     @BindView(R.id.tv_date)
     TextView tvDate;
 
     public MessageViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this,itemView);
+      itemView.setOnClickListener(this);
+    }
+
+    @Override public void onClick(View view) {
+      listener.onItemClick(view,getAdapterPosition());
     }
   }
 }

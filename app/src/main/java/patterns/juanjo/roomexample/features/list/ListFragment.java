@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +27,11 @@ import patterns.juanjo.roomexample.R;
 import patterns.juanjo.roomexample.RoomApp;
 import patterns.juanjo.roomexample.data.entity.Message;
 import patterns.juanjo.roomexample.features.create.CreateActivity;
+import patterns.juanjo.roomexample.features.detail.DetailActivity;
 import patterns.juanjo.roomexample.viewmodel.MessagesViewModel;
 
-public class ListFragment extends LifecycleFragment {
+public class ListFragment extends LifecycleFragment implements RecyclerOnItemClickListener{
+  private static final String DETAIL_ITEM_ID = "DETAIL_ITEM_ID";
 
   @BindView(R.id.rec_list_messages) RecyclerView mRecycler;
   @BindView(R.id.fab_create_message) FloatingActionButton mFab;
@@ -82,6 +85,7 @@ public class ListFragment extends LifecycleFragment {
     mRecycler.setHasFixedSize(true);
     mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
     mAdapter = new MessageListAdapter();
+    mAdapter.setOnItemClick(this);
     mRecycler.setAdapter(mAdapter);
   }
 
@@ -93,7 +97,11 @@ public class ListFragment extends LifecycleFragment {
     });
   }
 
+  //TODO: Empty view for empty list of messages
   private void showEmptyView() {
   }
 
+  @Override public void onItemClick(View v, int position) {
+     startActivity(new Intent(getActivity(), DetailActivity.class).putExtra(DETAIL_ITEM_ID,mAdapter.getMessageId(position)));
+  }
 }

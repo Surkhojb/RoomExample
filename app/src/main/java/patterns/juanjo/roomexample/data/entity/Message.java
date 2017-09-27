@@ -26,6 +26,8 @@ public class Message {
     this.color = color;
   }
 
+  public String getMessageId(){return id;}
+
   public String getTitle() {
     return title;
   }
