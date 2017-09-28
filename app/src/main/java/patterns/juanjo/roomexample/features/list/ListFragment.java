@@ -36,7 +36,7 @@ public class ListFragment extends LifecycleFragment implements RecyclerOnItemCli
   @BindView(R.id.rec_list_messages) RecyclerView mRecycler;
   @BindView(R.id.fab_create_message) FloatingActionButton mFab;
   @BindView(R.id.toolbar)Toolbar mToolbar;
-
+  @BindView(R.id.view_empty_list) View mEmptyList;
   @Inject ViewModelProvider.Factory viewModelFactory;
   MessagesViewModel messagesViewModel;
   MessageListAdapter mAdapter;
@@ -73,10 +73,12 @@ public class ListFragment extends LifecycleFragment implements RecyclerOnItemCli
     messagesViewModel = ViewModelProviders.of(this,viewModelFactory).get(MessagesViewModel.class);
     messagesViewModel.getMessages().observe(this, new Observer<List<Message>>() {
       @Override public void onChanged(@Nullable List<Message> messages) {
-          if(messages.size() != 0)
-           mAdapter.setMessages(messages);
+          if(messages.size() != 0){
+              mAdapter.setMessages(messages);
+              showEmptyView(false);
+          }
           else
-           showEmptyView();
+           showEmptyView(true);
       }
     });
   }
@@ -98,7 +100,8 @@ public class ListFragment extends LifecycleFragment implements RecyclerOnItemCli
   }
 
   //TODO: Empty view for empty list of messages
-  private void showEmptyView() {
+  private void showEmptyView(boolean state) {
+       mEmptyList.setVisibility(state ? View.VISIBLE : View.GONE);
   }
 
   @Override public void onItemClick(View v, int position) {
