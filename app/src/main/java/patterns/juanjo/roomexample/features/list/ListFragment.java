@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,6 +90,8 @@ public class ListFragment extends LifecycleFragment implements RecyclerOnItemCli
     mAdapter = new MessageListAdapter();
     mAdapter.setOnItemClick(this);
     mRecycler.setAdapter(mAdapter);
+    ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+    itemTouchHelper.attachToRecyclerView(mRecycler);
   }
 
  private void handleFab() {
@@ -107,4 +110,21 @@ public class ListFragment extends LifecycleFragment implements RecyclerOnItemCli
   @Override public void onItemClick(View v, int position) {
      startActivity(new Intent(getActivity(), DetailActivity.class).putExtra(DETAIL_ITEM_ID,mAdapter.getMessageId(position)));
   }
+
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,
+            ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
+            final int position = viewHolder.getAdapterPosition(); //swiped position
+            if (direction == ItemTouchHelper.LEFT)
+                Toast.makeText(getActivity(), "Swipped to left", Toast.LENGTH_SHORT).show();
+        }
+
+    };
 }
