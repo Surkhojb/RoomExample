@@ -55,6 +55,15 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     return messages.get(position).getMessageId();
   }
 
+  public Message getMessage(int position) {
+    return messages.get(position);
+  }
+
+  public void removeMessage(int position){
+    messages.remove(position);
+    notifyItemRemoved(position);
+  }
+
   public class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     @BindView(R.id.img_color)
     CircleImageView imgColor;

@@ -102,7 +102,6 @@ public class ListFragment extends LifecycleFragment implements RecyclerOnItemCli
     });
   }
 
-  //TODO: Empty view for empty list of messages
   private void showEmptyView(boolean state) {
        mEmptyList.setVisibility(state ? View.VISIBLE : View.GONE);
   }
@@ -123,7 +122,9 @@ public class ListFragment extends LifecycleFragment implements RecyclerOnItemCli
         public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
             final int position = viewHolder.getAdapterPosition(); //swiped position
             if (direction == ItemTouchHelper.LEFT)
-                Toast.makeText(getActivity(), "Swipped to left", Toast.LENGTH_SHORT).show();
+                messagesViewModel.deleteMessage(mAdapter.getMessage(position));
+                mAdapter.removeMessage(position);
+                Toast.makeText(getActivity(), "Item removed", Toast.LENGTH_SHORT).show();
         }
 
     };
